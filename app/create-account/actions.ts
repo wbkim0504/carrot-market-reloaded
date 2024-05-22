@@ -1,7 +1,6 @@
 "use server";
 import { z } from "zod";
 
-const usernameSchema = z.string().min(5).max(10);
 const formSchema = z.object({
   username: z.string().min(3).max(10),
   email: z.string().email(),
