@@ -1,4 +1,5 @@
 "use server";
+
 import bcrypt from "bcrypt";
 import {
   PASSWORD_MIN_LENGTH,
