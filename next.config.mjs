@@ -5,6 +5,9 @@ const nextConfig = {
       {
         hostname: "avatars.githubusercontent.com",
       },
+      {
+        hostname: "scontent-ssn1-1.xx.fbcdn.net",
+      },
     ],
   },
 };
