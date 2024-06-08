@@ -5,7 +5,9 @@ import { unstable_cache as nextCache } from "next/cache";
 import { Prisma } from "@prisma/client";
 import Link from "next/link";
 
-const getCachedProducts = nextCache(getInitialProducts, ["home-products"]);
+const getCachedProducts = nextCache(getInitialProducts, ["home-products"], {
+  revalidate: 60,
+});
 
 async function getInitialProducts() {
   console.log("hit!!!!");
