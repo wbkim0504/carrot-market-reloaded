@@ -44,13 +44,14 @@ const getCachedPost = nextCache(getPost, ["post-detail"], {
   revalidate: 60,
 });
 
-async function getLikeStatus(postId: number) {
-  const session = await getSession();
+// async function getLikeStatus(postId: number) {
+async function getLikeStatus(postId: number, userId: number) {  
+  // const session = await getSession();
   const isLiked = await db.like.findUnique({
     where: {
       id: {
         postId,
-        userId: session.id!,
+        userId: userId!,
       },
     },
   });
@@ -65,11 +66,14 @@ async function getLikeStatus(postId: number) {
   };
 }
 
-function getCachedLikeStatus(postId: number) {
+async function getCachedLikeStatus(postId: number) {
+  const session = await getSession()
+  const userId = session.id;
   const cachedOperation = nextCache(getLikeStatus, ["product-like-status"], {
     tags: [`like-status-${postId}`],
   });
-  return cachedOperation(postId);
+  //return cachedOperation(postId);
+  return cachedOperation(postId, userId!);
 }
 
 export default async function PostDetail({
